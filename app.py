@@ -40,7 +40,6 @@ class Contect(db.Model):
     email = db.Column(db.String(20), nullable=False)
 
 
-   
 class Post(db.Model):
 
     sno = db.Column(db.Integer, primary_key=True)
@@ -52,7 +51,6 @@ class Post(db.Model):
     img_file = db.Column(db.String(12), nullable=True)
     paragraph = db.Column(db.String(1000), nullable=False)
 
-
 @app.route("/home")
 
 def home():
@@ -63,22 +61,18 @@ def home():
 def login():
     return render_template('login.html',params=params)
 
-
 @app.route("/layout")
 def layout():
     return render_template('layout.html',params=params)
-
 
 @app.route("/post/<string:post_slug>", methods=['GET'])
 def post_route(post_slug):
     post = Post.query.filter_by(slug=post_slug).first()
     return render_template('post.html',params=params,  post=post)
 
-
 @app.route("/about")
 def about():
     return render_template('about.html',params=params)
-
 
 @app.route("/contact", methods = ['GET', 'POST'])
 def contact():
@@ -97,9 +91,7 @@ def contact():
                           recipients =[params['gmail-user']],
                           body = message + "\n" + phone
                           )
-    return render_template('contact.html',params=params)
+    return render_template('contact.html', params=params)
 
-
-app.run(debug=True ,port=8000)
-
+app.run(debug=True )
 
