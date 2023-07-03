@@ -1,0 +1,16 @@
+{
+    "params":
+    {
+        "local_server":"True",
+        "local_uri":"mysql://root:@localhost/codingthander",
+        "local_prod":"mysql://root:@localhost/codingthander",
+        "fb_url":"https://facebook.com/codingthander",
+        "tw_url":"https://twitter.com/codingthander",
+        "gh_url":"https://github.com/codingthander",
+        "blog_name":"Coding Thander",
+        "gmail-user":"sundrammaurya1996@gmail.com",
+        "gmail-password":"Sundar12345",
+        "about_text":"Hi i am sundram maurya and my distt in Azamgarh ",
+        "no_of_post":3
+    }
+}
