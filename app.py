@@ -55,7 +55,7 @@ class Post(db.Model):
 @app.route("/")
 
 def home():
-    post = Post.query.filter_by().all()[0:params['no_of_post']]
+    post = Post.query.filter_by().all()[0 : params['no_of_post']]
     return render_template('home.html',params=params, post=post)
 
 @app.route("/login")
