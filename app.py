@@ -50,9 +50,10 @@ class Post(db.Model):
     tagline = db.Column(db.String(120), nullable=True)
     date = db.Column(db.String(12), nullable=True)
     img_file = db.Column(db.String(12), nullable=True)
+    paragraph = db.Column(db.String(1000), nullable=False)
 
 
-@app.route("/")
+@app.route("/home")
 
 def home():
     post = Post.query.filter_by().all()[0 : params['no_of_post']]
