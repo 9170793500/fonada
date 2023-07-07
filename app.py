@@ -93,9 +93,9 @@ def ragistation():
         DOB = request.form.get('DOB')
         Pincode = request.form.get('Pincode')
         EmailID = request.form.get('EmailID')
-        print('Username - ', Username)
+    
         entry = Ragistation(Username= Username, Mothername = Mothername,
-                         Fathername = Fathername, Address= Address,Gender= 'Male',
+                         Fathername = Fathername, Address= Address,Gender= Gender,
                          DOB=DOB, Pincode=Pincode, EmailID = EmailID)
         db.session.add(entry)
         db.session.commit()
@@ -108,16 +108,16 @@ def contact():
         
         name = request.form.get('name')
         email = request.form.get('email')
-        phone = request.form.get('phone')
+        phoneno = request.form.get('phoneno')
         message = request.form.get('message')
         datetime = request.form.get('date')
-        data = Contect(name=name, phoneno = phone, msg = message, date= 'datetime.now()',email = email )
+        data = Contect(name=name, phoneno = phoneno, msg = message, date= 'datetime.now()',email = email )
         db.session.add(data)
         db.session.commit()
         mail.send_message('New message from ' + name,
                           sender=email,
                           recipients =[params['gmail-user']],
-                          body = message + "\n" + phone
+                          body = message + "\n" + phoneno
                           )
     return render_template('contact.html', params=params)
 
