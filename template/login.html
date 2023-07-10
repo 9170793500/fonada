@@ -1,7 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 
-
+<script>
+       function simpleAlert() {
+            alert("This page Login")
+              ;
+        }
+</script>
 <style>
     .con {
         margin-top: 10px;
@@ -66,7 +71,7 @@
 
 
                                         <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                            type="submit">Login</button>
+                                        onclick="simpleAlert()" type="submit">Login</button>
 
 
                                         <a class="btn btn-light btn-lg" href="/farget">Forgot password?</a>

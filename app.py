@@ -13,15 +13,7 @@ local_server = True
 
 app = Flask(__name__, template_folder='template')
 
-app.config.update(
-    MAIL_SERVER = 'gsmtp.gmail.com',
-    MAIL_PORT = '465',
-    MAIL_USE_SSL = True,
-    MAIL_USERNAME = 'gmail-user',
-    MAIL_PASSWORD=  'gmail-password'
-  
-)
-mail = Mail(app)
+
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
 else:
@@ -31,15 +23,15 @@ db = SQLAlchemy(app)
 
 class Contect(db.Model):
 
-    sno = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
+    sno = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
     phoneno = db.Column(db.String(12), nullable=False)
     msg = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(12), nullable=True)
     email = db.Column(db.String(20), nullable=False)
 
 class Ragistation(db.Model):
-
+    
     sno = db.Column(db.Integer(), primary_key=True)
     Username = db.Column(db.String(50),nullable=False)
     Mothername = db.Column(db.String(20), nullable=False)
@@ -105,20 +97,16 @@ def ragistation():
 @app.route("/contact", methods = ['GET', 'POST'])
 def contact():
     if(request.method=='POST'):
-        
+      
         name = request.form.get('name')
         email = request.form.get('email')
-        phoneno = request.form.get('phoneno')
+        phone = request.form.get('phone')
         message = request.form.get('message')
-        datetime = request.form.get('date')
-        data = Contect(name=name, phoneno = phoneno, msg = message, date= 'datetime.now()',email = email )
-        db.session.add(data)
+      
+        entry = Contect(name=name, phoneno = phone, msg = message, date= datetime.now(),email = email )
+        db.session.add(entry)
         db.session.commit()
-        mail.send_message('New message from ' + name,
-                          sender=email,
-                          recipients =[params['gmail-user']],
-                          body = message + "\n" + phoneno
-                          )
+      
     return render_template('contact.html', params=params)
 
 app.run(debug=True )
